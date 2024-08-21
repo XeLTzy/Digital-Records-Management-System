@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             myCustomButton: {
                 text: '▼',
                 click: function () {
-                    $('#myModal').modal('show'); // Show the modal
+                    $('#DashboardDatePicker').modal('show'); // Show the modal
                 }
             }
         },
@@ -82,3 +82,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+$("#DashboardDatePicker").datepicker();
