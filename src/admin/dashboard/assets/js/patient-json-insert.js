@@ -1,4 +1,4 @@
-var $table = $('#table')
+var $table = $('#PatientRecordTable')
 var $button = $('#AddedPatientSubmit')
 
 $(function () {
@@ -540,35 +540,24 @@ $(function () {
     $table.bootstrapTable({ data: data })
 })
 
-const patientfirstname = document.getElementById('patientfirstname').value.trim();
-const patientmiddlename = document.getElementById('patientmiddlename').value.trim();
-const patientlastname = document.getElementById('patientlastname').value.trim();
-const patientsuffix = document.getElementById('patientsuffix').value.trim();
+const patientfirstname = document.getElementById('patientfirstname').value.trim().charAt(0).toUpperCase() + document.getElementById('patientfirstname').value.trim().slice(1).toLowerCase();
+const patientmiddlename = document.getElementById('patientmiddlename').value.trim().charAt(0).toUpperCase() + document.getElementById('patientmiddlename').value.trim().slice(1).toLowerCase();
+const patientlastname = document.getElementById('patientlastname').value.trim().charAt(0).toUpperCase() + document.getElementById('patientlastname').value.trim().slice(1).toLowerCase();
+const patientsuffix = document.getElementById('patientsuffix').value.trim().toUpperCase();
 const patientbirthday = document.getElementById('patientbirthday').value.trim();
 const patientregion = document.getElementById('region-text').value.trim();
 const patientprovince = document.getElementById('province-text').value.trim();
 const patientcity = document.getElementById('city-text').value.trim();
 const patientbarangay = document.getElementById('barangay-text').value.trim();
-const streetname = document.getElementById('streetname').value.trim();
+const streetname = document.getElementById('streetname').value.trim().charAt(0).toUpperCase() + document.getElementById('streetname').value.trim().slice(1).toLowerCase();
 const housenumber = document.getElementById('housenumber').value.trim();
 const contactnumber = document.getElementById('contactnumber').value.trim();
 const email = document.getElementById('email').value.trim();
-const discountid = document.getElementById('discountid').value.trim();
-const guardianfirstname = document.getElementById('guardianfirstname').value.trim();
-const guardianmiddlename = document.getElementById('guardianmiddlename').value.trim();
-const guardianlastname = document.getElementById('guardianlastname').value.trim();
-const guardiansuffix = document.getElementById('guardiansuffix').value.trim();
-
-const patientfirstnamerevise = patientfirstname.trim().charAt(0).toUpperCase() + patientfirstname.trim().slice(1)
-const patientmiddlenamerevise = patientmiddlename.trim().charAt(0).toUpperCase() + patientmiddlename.trim().slice(1)
-const patientlastnamerevise = patientlastname.trim().charAt(0).toUpperCase() + patientlastname.trim().slice(1)
-const patientsuffixrevise = patientsuffix.toUpperCase();
-const streetnamerevise = streetname.charAt(0).toUpperCase() + streetname.trim().slice(1);
-
-const guardianfirstnamerevise = guardianfirstname.trim().charAt(0).toUpperCase() + guardianfirstname.trim().slice(1);
-const guardianmiddlenamerevise = guardianmiddlename.trim().charAt(0).toUpperCase() + guardianmiddlename.trim().slice(1);
-const guardianlastnamerevise = guardianlastname.trim().charAt(0).toUpperCase() + guardianlastname.trim().slice(1);
-const guardiansuffixrevise = guardiansuffix.toUpperCase();
+const discountid = document.getElementById('discountid').value.trim().toUpperCase();
+const guardianfirstname = document.getElementById('guardianfirstname').value.trim().charAt(0).toUpperCase() + document.getElementById('guardianfirstname').value.trim().slice(1).toLowerCase();
+const guardianmiddlename = document.getElementById('guardianmiddlename').value.trim().charAt(0).toUpperCase() + document.getElementById('guardianmiddlename').value.trim().slice(1).toLowerCase();
+const guardianlastname = document.getElementById('guardianlastname').value.trim().charAt(0).toUpperCase() + document.getElementById('guardianlastname').value.trim().slice(1).toLowerCase();
+const guardiansuffix = document.getElementById('guardiansuffix').value.trim().toUpperCase();
 
 const getage = calculateAge(patientbirthday);
 
@@ -577,33 +566,33 @@ $(function () {
         $table.bootstrapTable('insertRow', {
             index: 1,
             row: {
-                "full_name": `${patientfirstnamerevise} ${patientmiddlenamerevise} ${patientlastnamerevise} ${patientsuffixrevise}`,
-                "first_name": `${patientfirstnamerevise}`,
-                "middle_name": `${patientmiddlenamerevise}`,
-                "last_name": `${patientlastnamerevise}`,
-                "suffix": `${patientsuffixrevise}`,
+                "full_name": `${patientfirstname} ${patientmiddlename} ${patientlastname} ${patientsuffix}`,
+                "first_name": `${patientfirstname}`,
+                "middle_name": `${patientmiddlename}`,
+                "last_name": `${patientlastname}`,
+                "suffix": `${patientsuffix}`,
                 "birthday": `${patientbirthday}`,
                 "age": `${getage}`,
                 "region": `${patientregion}`,
                 "province": `${patientprovince}`,
                 "municipality": `${patientcity}`,
                 "barangay": `${patientbarangay}`,
-                "street_name": `${streetnamerevise}`,
+                "street_name": `${streetname}`,
                 "house_number": `${housenumber}`,
-                "full_address": `${housenumber} ${streetnamerevise} ${'St,'} ${patientbarangay}, ${patientcity}, ${patientregion}`,
+                "full_address": `${housenumber} ${streetname} ${'St,'} ${patientbarangay}, ${patientcity}, ${patientregion}`,
                 "contact_number": `${contactnumber}`,
                 "pwd_senior_control_number": `${discountid}`,
                 "email": `${email}`,
-                "guardian_full_name": `${guardianfirstnamerevise} ${guardianmiddlenamerevise} ${guardianlastnamerevise} ${guardiansuffixrevise}`,
-                "guardian_firstname": `${guardianfirstnamerevise}`,
-                "guardian_middlename": `${guardianmiddlenamerevise}`,
-                "guardian_lastname": `${guardianlastnamerevise}`,
-                "guardian_suffix": `${guardiansuffixrevise}`
+                "guardian_full_name": `${guardianfirstname} ${guardianmiddlename} ${guardianlastname} ${guardiansuffix}`,
+                "guardian_firstname": `${guardianfirstname}`,
+                "guardian_middlename": `${guardianmiddlename}`,
+                "guardian_lastname": `${guardianlastname}`,
+                "guardian_suffix": `${guardiansuffix}`
             }
         })
     })
 
-    $table.on('check.bs.table', (event, row) => {
+    $PatientRecordTable.on('check.bs.PatientRecordTable', (event, row) => {
         console.log(JSON.stringify(row))
     })
 
