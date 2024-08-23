@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentista Royale Dental Works</title>
+    <link rel="stylesheet" href="appointment.css">
+</head>
+<body>
+    <header>
+        <div class="applogo">
+            <div class="logo">
+                <img src="dental-logo.png" alt="Dentista Royale Logo">
+                <h1>Dentista Royale D.W</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointment.html">Appointment</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="logos">
+                <img src="dental-logo-v2.jpg" alt="Dentista Royale Dental Works Logo">
+            </div>
+            <form class="appointment-form">
+                <div class="input-group">
+                    <label for="firstname">Firstname (Required)</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastname">Lastname (Required)</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <div class="input-group">
+                    <label for="contactnumber">Contact number (Required)</label>
+                    <input type="tel" id="contactnumber" name="contactnumber" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="input-group">
+                    <label for="date">Date (Required)</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="time-picker">
+                    <select id="hours">
+                        <!-- Options for hours (01 to 12) -->
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                    :
+                    <select id="minutes">
+                        <!-- Options for minutes (00 to 59) -->
+                        <option>00</option>
+                        <option>15</option>
+                        <option>30</option>
+                        <option>45</option>
+                    </select>
+                    <select id="ampm">
+                        <!-- Options for AM/PM -->
+                        <option>AM</option>
+                        <option>PM</option>
+                    </select>
+                </div>
+                <div class="info">
+                    <p>Closed (Friday)</p>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="foot">
+                <h3>Address</h3>
+                <p>EMA TOWN CENTER, Dentista Royale D.W (beside EC Diagnostics,
+                along Terminal Sto Nino - Monumento) El Camino Real 
+                Road, Sto. Niño, Barangay Camalig, Meycauayan, 
+                Philippines</p>
+            </div>
+            <div class="foot">
+                <h3>Working hours</h3>
+                <p>Monday - Thursday: 8 AM - 5 PM<br>
+                Saturday - Sunday: 9 AM - 5 PM<br>
+                Closed: Friday</p>
+            </div>
+            <div class="foot">
+                <h3>Contact Us</h3>
+                <p>
+                    <img src="icons8-phone-20.png" alt="phone-log">0917 839 1624<br>
+                    <img src="icons8-facebook-20.png" alt="Facebook-logo"><a href="https://web.facebook.com/DentistaRoyaleDW">Dentista Royale D.W </a></p>
+            </div>
+            <div class="foot">
+                <h3>Links</h3>
+                    <a href="homepage.html">Home</a><br>
+                    <a href="services.html">Services</a><br>
+                    <a href="appointment.html">Booking</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 by Dentista Royale Dental Works. Website</p>
+        </div>
+    </footer>
+</body>
+</html>
