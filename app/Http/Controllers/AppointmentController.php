@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 class AppointmentController extends Controller
 {
 
+    //Retrieval functions
+    public function index()
+    {
+        // Retrieve all appointments with related patient and contact information
+        $appointments = Appointment::with('patient', 'patient.contactInformation')->get();
+
+        // Pass the appointments data to the view
+        return view('appointments.index', compact('appointments'));
+    }
+
     public function store(Request $request)
     {
         // Validate the form data

@@ -8,3 +8,9 @@ Route::get('/', function () {
 });
 
 Route::post('/appointment/store', [AppointmentController::class, 'store'])->name('appointment.store');
+//retrieve patient appointment below
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+
+
+
+
