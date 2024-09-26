@@ -30,7 +30,14 @@
                     id="Userprofiledropdown">
                     <li><a class="dropdown-item" href="#" id="UserSettings" data-bs-toggle="modal"
                             data-bs-target="#UserSettingsModal">Settings</a></li>
-                    <li><a class="dropdown-item" href="#" id="UserLogout">Logout</a></li>
+                    <li>
+                        <!-- <a class="dropdown-item" href="#" id="UserLogout">Logout</a> -->
+                        <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-link text-dark" style="text-decoration: none;">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </li>
         </ul>

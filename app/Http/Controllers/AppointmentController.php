@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\ContactInformation;
 use App\Models\Patient;
 use App\Models\Appointment;
-use App\Models\AppointmentInformation;
-use Str;
+use App\Models\AppointmentConfirmation;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
@@ -15,12 +16,27 @@ class AppointmentController extends Controller
     //Retrieval functions
     public function index()
     {
-        // Retrieve all appointments with related patient and contact information
-        $appointments = Appointment::with('patient', 'patient.contactInformation')->get();
-
-        // Pass the appointments data to the view
-        return view('appointments.index', compact('appointments'));
+        return view('client.appointment');
     }
+
+    public function getAppointments()
+    {
+        // Fetch appointments with patient details
+        $appointments = Appointment::with('patient')
+            ->get(['id', 'patient_id', 'date', 'time'])
+            ->map(function ($appointment) {
+                return [
+                    'id' => $appointment->id,
+                    'title' => $appointment->patient->firstname . ' ' . $appointment->patient->lastname,
+                    'start' => $appointment->date . 'T' . $appointment->time, // FullCalendar uses ISO8601 format
+                    //'end' => $appointment->date . 'T' . date('H:i:s', strtotime($appointment->time) + 3600), // Example: adding 1 hour to time
+                ];
+            });
+
+        // Pass appointments to the view
+        return view('admin.dashboard', compact('appointments'));
+    }
+
 
     public function store(Request $request)
     {
@@ -39,6 +55,7 @@ class AppointmentController extends Controller
             'firstname' => $validated['firstname'],
             'lastname' => $validated['lastname'],
         ]);
+        $patient->save();
 
         // Store contact information
         $contact = ContactInformation::firstOrCreate([
@@ -47,21 +64,40 @@ class AppointmentController extends Controller
             'email' => $validated['email'],
         ]);
 
+        $contact->save();
+
         // Create the appointment
         $appointment = Appointment::create([
             'patient_id' => $patient->id,
             'date' => $validated['date'],
             'time' => $validated['time'],
         ]);
+        $appointment->save();
 
-        // Redirect or return a response after success
-        return redirect()->back()->with('success', 'Appointment has been successfully booked!');
+        // Generate a random code for the appointment confirmation
+        $code = $this->generateRandomCode();
+
+        $appointmentconfirmation = AppointmentConfirmation::create([
+            'appointment_id' => $appointment->id,
+            'code' => $code,
+        ]);
+
+        $appointmentconfirmation->save();
+
+        //Debug insert
+        // return response()->json([
+        //     'message' => 'Appointment successfully!',
+        //     'patient' => $patient,
+        //     'contact' => $contact,
+        //     'appointment' => $appointment,
+        //     'appointmentconfirmation' => $appointmentconfirmation,
+        // ], 201);
+    
+        //return redirect()->back()->with('success', 'Appointment has been successfully booked!');
     }
 
     private function generateRandomCode($length = 5)
     {
         return strtoupper(Str::random($length)); // Generates a random alphanumeric string and converts it to uppercase
     }
-
-
 }

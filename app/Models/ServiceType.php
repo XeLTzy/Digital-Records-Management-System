@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Str;
+use Illuminate\Support\Str;
 
 class ServiceType extends Model
 {
