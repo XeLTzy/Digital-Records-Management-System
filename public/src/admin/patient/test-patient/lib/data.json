@@ -1,0 +1,228 @@
+Here's the updated `data1.json` file where the `first_name`, `middle_name`, and `last_name` are concatenated into a `full_name` field:
+
+```json
+[
+    {
+        "full_name": "John Michael Smith",
+        "first_name": "John",
+        "middle_name": "Michael",
+        "last_name": "Smith",
+        "birthday": "1980-05-12",
+        "age": 44,
+        "address": "123 Main St, Springfield, IL",
+        "contact_number": "555-1234",
+        "pwd_senior_control_number": "SCN0012345"
+    },
+    {
+        "full_name": "Jane Elizabeth Doe",
+        "first_name": "Jane",
+        "middle_name": "Elizabeth",
+        "last_name": "Doe",
+        "birthday": "1975-07-22",
+        "age": 49,
+        "address": "456 Elm St, Springfield, IL",
+        "contact_number": "555-5678",
+        "pwd_senior_control_number": "PWD0023456"
+    },
+    {
+        "full_name": "Robert James Johnson",
+        "first_name": "Robert",
+        "middle_name": "James",
+        "last_name": "Johnson",
+        "birthday": "1950-02-18",
+        "age": 74,
+        "address": "789 Oak St, Springfield, IL",
+        "contact_number": "555-6789",
+        "pwd_senior_control_number": "SCN0034567"
+    },
+    {
+        "full_name": "Emily Rose Williams",
+        "first_name": "Emily",
+        "middle_name": "Rose",
+        "last_name": "Williams",
+        "birthday": "1990-11-05",
+        "age": 33,
+        "address": "321 Pine St, Springfield, IL",
+        "contact_number": "555-7890",
+        "pwd_senior_control_number": "PWD0045678"
+    },
+    {
+        "full_name": "William Alexander Brown",
+        "first_name": "William",
+        "middle_name": "Alexander",
+        "last_name": "Brown",
+        "birthday": "1945-04-30",
+        "age": 79,
+        "address": "654 Cedar St, Springfield, IL",
+        "contact_number": "555-8901",
+        "pwd_senior_control_number": "SCN0056789"
+    },
+    {
+        "full_name": "Sophia Grace Jones",
+        "first_name": "Sophia",
+        "middle_name": "Grace",
+        "last_name": "Jones",
+        "birthday": "1985-09-14",
+        "age": 39,
+        "address": "987 Birch St, Springfield, IL",
+        "contact_number": "555-9012",
+        "pwd_senior_control_number": "PWD0067890"
+    },
+    {
+        "full_name": "David Anthony Garcia",
+        "first_name": "David",
+        "middle_name": "Anthony",
+        "last_name": "Garcia",
+        "birthday": "1972-12-20",
+        "age": 52,
+        "address": "159 Maple St, Springfield, IL",
+        "contact_number": "555-0123",
+        "pwd_senior_control_number": "SCN0078901"
+    },
+    {
+        "full_name": "Olivia Mae Miller",
+        "first_name": "Olivia",
+        "middle_name": "Mae",
+        "last_name": "Miller",
+        "birthday": "1965-06-11",
+        "age": 59,
+        "address": "753 Willow St, Springfield, IL",
+        "contact_number": "555-1235",
+        "pwd_senior_control_number": "PWD0089012"
+    },
+    {
+        "full_name": "James Edward Martinez",
+        "first_name": "James",
+        "middle_name": "Edward",
+        "last_name": "Martinez",
+        "birthday": "1982-08-03",
+        "age": 42,
+        "address": "852 Chestnut St, Springfield, IL",
+        "contact_number": "555-2345",
+        "pwd_senior_control_number": "SCN0090123"
+    },
+    {
+        "full_name": "Isabella Marie Davis",
+        "first_name": "Isabella",
+        "middle_name": "Marie",
+        "last_name": "Davis",
+        "birthday": "1995-10-25",
+        "age": 29,
+        "address": "951 Ash St, Springfield, IL",
+        "contact_number": "555-3456",
+        "pwd_senior_control_number": "PWD0101234"
+    },
+    {
+        "full_name": "Benjamin Henry Rodriguez",
+        "first_name": "Benjamin",
+        "middle_name": "Henry",
+        "last_name": "Rodriguez",
+        "birthday": "1960-01-02",
+        "age": 64,
+        "address": "741 Fir St, Springfield, IL",
+        "contact_number": "555-4567",
+        "pwd_senior_control_number": "SCN0112345"
+    },
+    {
+        "full_name": "Ava Louise Martinez",
+        "first_name": "Ava",
+        "middle_name": "Louise",
+        "last_name": "Martinez",
+        "birthday": "1977-03-15",
+        "age": 47,
+        "address": "963 Hemlock St, Springfield, IL",
+        "contact_number": "555-5678",
+        "pwd_senior_control_number": "PWD0123456"
+    },
+    {
+        "full_name": "Lucas John Lopez",
+        "first_name": "Lucas",
+        "middle_name": "John",
+        "last_name": "Lopez",
+        "birthday": "1948-07-23",
+        "age": 76,
+        "address": "357 Poplar St, Springfield, IL",
+        "contact_number": "555-6789",
+        "pwd_senior_control_number": "SCN0134567"
+    },
+    {
+        "full_name": "Mia Evelyn Gonzalez",
+        "first_name": "Mia",
+        "middle_name": "Evelyn",
+        "last_name": "Gonzalez",
+        "birthday": "1993-05-07",
+        "age": 31,
+        "address": "258 Redwood St, Springfield, IL",
+        "contact_number": "555-7890",
+        "pwd_senior_control_number": "PWD0145678"
+    },
+    {
+        "full_name": "Matthew Thomas Wilson",
+        "first_name": "Matthew",
+        "middle_name": "Thomas",
+        "last_name": "Wilson",
+        "birthday": "1987-10-18",
+        "age": 37,
+        "address": "159 Aspen St, Springfield, IL",
+        "contact_number": "555-8901",
+        "pwd_senior_control_number": "SCN0156789"
+    },
+    {
+        "full_name": "Charlotte Ann Hernandez",
+        "first_name": "Charlotte",
+        "middle_name": "Ann",
+        "last_name": "Hernandez",
+        "birthday": "1998-02-27",
+        "age": 26,
+        "address": "753 Pinecone St, Springfield, IL",
+        "contact_number": "555-9012",
+        "pwd_senior_control_number": "PWD0167890"
+    },
+    {
+        "full_name": "Daniel Andrew Perez",
+        "first_name": "Daniel",
+        "middle_name": "Andrew",
+        "last_name": "Perez",
+        "birthday": "1970-11-30",
+        "age": 53,
+        "address": "654 Cedar St, Springfield, IL",
+        "contact_number": "555-0123",
+        "pwd_senior_control_number": "SCN0178901"
+    },
+    {
+        "full_name": "Amelia Rose Anderson",
+        "first_name": "Amelia",
+        "middle_name": "Rose",
+        "last_name": "Anderson",
+        "birthday": "1955-04-17",
+        "age": 69,
+        "address": "951 Oak St, Springfield, IL",
+        "contact_number": "555-1235",
+        "pwd_senior_control_number": "PWD0189012"
+    },
+    {
+        "full_name": "Alexander David Thomas",
+        "first_name": "Alexander",
+        "middle_name": "David",
+        "last_name": "Thomas",
+        "birthday": "1991-09-19",
+        "age": 33,
+        "address": "321 Elm St, Springfield, IL",
+        "contact_number": "555-2345",
+        "pwd_senior_control_number": "SCN0190123"
+    },
+    {
+        "full_name": "Ella Grace Taylor",
+        "first_name": "Ella",
+        "middle_name": "Grace",
+        "last_name": "Taylor",
+        "birthday": "1967-06-25",
+        "age": 57,
+        "address": "789 Birch St, Springfield, IL",
+        "contact_number": "555-3456",
+        "pwd_senior_control_number": "PWD0201234"
+    }
+]
+```
+
+In this JSON file, each entry now includes a `full_name` field that concatenates the `first_name`, `middle_name`, and `last_name` fields.

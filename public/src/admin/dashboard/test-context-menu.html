@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context menu</title>
+
+    <!-- Boostrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery and jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+
+    <!-- Bootstrap Table -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.2/dist/bootstrap-table.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.2/dist/bootstrap-table.min.js"></script>
+
+    <!-- Boostrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- <style>
+        #context-menu-PatientRecords {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+        }
+    </style> -->
+
+    <script defer src="PatientModel.js"></script>
+    <script defer src="PatientView.js"></script>
+    <script defer src="PatientController.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+        <table id="table" data-search="true" data-show-columns="true">
+            <thead>
+                <tr>
+                    <th data-field="full_name">Fullname</th>
+                    <th data-field="birthday">Birthday</th>
+                    <th data-field="age">Age</th>
+                    <th data-field="full_address">Address</th>
+                    <th data-field="contact_number">Contact number</th>
+                    <th data-field="pwd_senior_control_number">Discount ID</th>
+                </tr>
+            </thead>
+        </table>
+
+        <!-- Dental Transaction Records -->
+        <div id="DentalTransactionRecords" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Transaction Records</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table id="table" data-toggle="table" data-height="345" data-url="json/data1.json">
+                            <thead>
+                                <tr>
+                                    <th data-field="DentalRecordsDate">Date</th>
+                                    <th data-field="DentalRecordsToothNumber">Tooth Number</th>
+                                    <th data-field="DentalRecordsTreatment">Treatment</th>
+                                    <th data-field="DentalRecordsTotal">Total</th>
+                                    <th data-field="DentalRecordsPaid">Paid</th>
+                                    <th data-field="DentalRecordsBalance">Balance</th>
+                                    <th data-field="DentalRecordsNotes">Notes</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Context menu Patient records -->
+        <ul id="context-menu-PatientRecords" class="dropdown-menu p-2">
+            <li class="">
+                <a class="dropdown-item d-flex align-items-center" data-item="editPatientRecords" href="#">
+                    <i class="bi bi-pencil-square"></i>
+                    <span class="mx-auto">Edit</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center" data-item="addPatientDentalRecords"
+                    data-bs-toggle="modal" data-bs-target="#DentalTransactionRecords" href="#">
+                    <i class="bi bi-file-medical"></i>
+                    <span class="mx-auto ms-3">View Dental Records </span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Update patient Modal -->
+        <div class="modal modal-centered modal-xl fade" id="UpdatePatientPersonalRecords" tabindex="-1"
+            aria-labelledby="UpdatePatientPersonalRecordsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="UpdatePatientPersonalRecordsModalLabel">Edit Patient Information
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <div class="container">
+                            <form id="editFormPatientInformation">
+                                <div class="row">
+                                    <p class="h4">Full name</p>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalfirstName" class="form-label">First
+                                            Name</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalfirstName"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalmiddleName" class="form-label">Middle
+                                            Name</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalmiddleName">
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonallastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonallastName"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalsuffix" class="form-label">Suffix</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalsuffix"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-3 mb-2">
+                                        <label for="UpdatePatientPersonalbirthday" class="form-label">Birthday</label>
+                                        <input type="date" class="form-control" id="UpdatePatientPersonalbirthday"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-2">
+                                        <label for="UpdatePatientPersonalage" class="form-label">Age</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalage" readonly>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <p class="h4">Complete Address</p>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalregion" class="form-label">Region</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalregion"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalprovince" class="form-label">Province</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalprovince"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalmunicipality"
+                                            class="form-label">Municipality</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalmunicipality"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalbarangay" class="form-label">Barangay</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalbarangay"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalstreetName" class="form-label">Street
+                                            Name</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalstreetName"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label for="UpdatePatientPersonalhouseNumber" class="form-label">House
+                                            Number</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalhouseNumber"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <p class="h4">Contact & Discount Information </p>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalcontactNumber" class="form-label">Contact
+                                            Number</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonalcontactNumber"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3 mb-3">
+                                        <label for="UpdatePatientPersonalEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="UpdatePatientPersonalEmail"
+                                            required>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label for="UpdatePatientPersonaldiscountId" class="form-label">Discount
+                                            ID</label>
+                                        <input type="text" class="form-control" id="UpdatePatientPersonaldiscountId"
+                                            required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveChangesPatientInformation">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <script>
+        $(function () {
+            var data = [
+                {
+                    "full_name": "John Michael Smith Sr.",
+                    "first_name": "John",
+                    "middle_name": "Michael",
+                    "last_name": "Smith",
+                    "suffix": "Sr.",
+                    "birthday": "1980-05-12",
+                    "age": 44,
+                    "region": "Region 1",
+                    "province": "Illinois",
+                    "municipality": "Springfield",
+                    "barangay": "La",
+                    "street_name": "Main St",
+                    "house_number": "123",
+                    "full_address": "123 Main St La, Springfield, Illinois, Region 1",
+                    "contact_number": "555-1234",
+                    "pwd_senior_control_number": "SCN0012345",
+                    "email": "john.smith@example.com",
+                    "guardian_full_name": "James Michael Smith Jr."
+                },
+                {
+                    "full_name": "Jane Elizabeth Doe IV",
+                    "first_name": "Jane",
+                    "middle_name": "Elizabeth",
+                    "last_name": "Doe",
+                    "suffix": "IV",
+                    "birthday": "1975-07-22",
+                    "age": 49,
+                    "region": "Region 2",
+                    "province": "Illinois",
+                    "municipality": "Springfield",
+                    "barangay": "Ua",
+                    "street_name": "Elm St",
+                    "house_number": "456",
+                    "full_address": "456 Elm St Ua, Springfield, Illinois, Region 2",
+                    "contact_number": "555-5678",
+                    "pwd_senior_control_number": "PWD0023456",
+                    "email": "jane.doe@example.com",
+                    "guardian_full_name": "Michael Robert Doe"
+                }
+            ];
+
+            $('#table').bootstrapTable({ data: data });
+
+            var selectedRowIndex = null;
+
+            // Show context menu on right-click
+            $('#table').on('contextmenu', function (e) {
+                e.preventDefault(); // Prevent the default context menu from appearing
+
+                // Get the index of the clicked row
+                var $row = $(e.target).closest('tr');
+                selectedRowIndex = $row.index();
+
+                $('#context-menu-PatientRecords').css({
+                    display: 'block',
+                    top: e.pageY + 'px',
+                    left: e.pageX + 'px'
+                });
+                return false; // Prevent the default context menu
+            });
+
+            // Hide context menu when clicking outside
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('#context-menu-PatientRecords').length) {
+                    $('#context-menu-PatientRecords').hide();
+                }
+            });
+
+            // Handle context menu item click
+            $('#context-menu-PatientRecords a').on('click', function () {
+                var item = $(this).data('item');
+                if (item === 'editPatientRecords') {
+                    if (selectedRowIndex !== null) {
+                        // Open the modal
+                        $('#UpdatePatientPersonalRecords').modal('show');
+
+                        // Populate the modal with the selected row data
+                        var selectedRow = data[selectedRowIndex];
+                        $('#UpdatePatientPersonalfirstName').val(selectedRow.first_name);
+                        $('#UpdatePatientPersonalmiddleName').val(selectedRow.middle_name);
+                        $('#UpdatePatientPersonallastName').val(selectedRow.last_name);
+                        $('#UpdatePatientPersonalsuffix').val(selectedRow.suffix);
+                        $('#UpdatePatientPersonalbirthday').val(selectedRow.birthday);
+                        $('#UpdatePatientPersonalage').val(selectedRow.age);
+                        $('#UpdatePatientPersonalregion').val(selectedRow.region);
+                        $('#UpdatePatientPersonalprovince').val(selectedRow.province);
+                        $('#UpdatePatientPersonalmunicipality').val(selectedRow.municipality);
+                        $('#UpdatePatientPersonalbarangay').val(selectedRow.barangay);
+                        $('#UpdatePatientPersonalstreetName').val(selectedRow.street_name);
+                        $('#UpdatePatientPersonalhouseNumber').val(selectedRow.house_number);
+                        $('#UpdatePatientPersonalcontactNumber').val(selectedRow.contact_number);
+                        $('#UpdatePatientPersonalEmail').val(selectedRow.email);
+                        $('#UpdatePatientPersonaldiscountId').val(selectedRow.pwd_senior_control_number);
+                    }
+                }
+                $('#context-menu-PatientRecords').hide();
+            });
+
+            // Update age automatically based on the birthday input
+            $('#UpdatePatientPersonalbirthday').on('change', function () {
+                var birthday = $(this).val();
+                var age = calculateAge(birthday);
+                $('#UpdatePatientPersonalage').val(age);
+            });
+
+            // Save changes and update table data
+            $('#saveChangesPatientInformation').on('click', function () {
+                if (selectedRowIndex !== null) {
+
+                    // Retrieve values from the form
+                    var firstName = $('#UpdatePatientPersonalfirstName').val();
+                    var middleName = $('#UpdatePatientPersonalmiddleName').val();
+                    var lastName = $('#UpdatePatientPersonallastName').val();
+                    var suffix = $('#UpdatePatientPersonalsuffix').val();
+                    var birthday = $('#UpdatePatientPersonalbirthday').val();
+                    var age = $('#UpdatePatientPersonalage').val(); // This should be updated automatically
+                    var region = $('#UpdatePatientPersonalregion').val();
+                    var province = $('#UpdatePatientPersonalprovince').val();
+                    var municipality = $('#UpdatePatientPersonalmunicipality').val();
+                    var barangay = $('#UpdatePatientPersonalbarangay').val();
+                    var streetName = $('#UpdatePatientPersonalstreetName').val();
+                    var houseNumber = $('#UpdatePatientPersonalhouseNumber').val();
+                    var contactNumber = $('#UpdatePatientPersonalcontactNumber').val();
+                    var UpdatedEmail = $('#UpdatePatientPersonalEmail').val();
+                    var discountId = $('#UpdatePatientPersonaldiscountId').val();
+
+                    // Update the data object
+                    data[selectedRowIndex].first_name = firstName;
+                    data[selectedRowIndex].middle_name = middleName;
+                    data[selectedRowIndex].last_name = lastName;
+                    data[selectedRowIndex].suffix = suffix;
+                    data[selectedRowIndex].birthday = birthday;
+                    data[selectedRowIndex].age = age;
+                    data[selectedRowIndex].region = region;
+                    data[selectedRowIndex].province = province;
+                    data[selectedRowIndex].municipality = municipality;
+                    data[selectedRowIndex].barangay = barangay;
+                    data[selectedRowIndex].street_name = streetName;
+                    data[selectedRowIndex].house_number = houseNumber;
+                    data[selectedRowIndex].full_address = `${houseNumber} ${streetName} ${barangay}, ${municipality}, ${province}, ${region}`;
+                    data[selectedRowIndex].contact_number = contactNumber;
+                    data[selectedRowIndex].email = UpdatedEmail;
+                    data[selectedRowIndex].pwd_senior_control_number = discountId;
+
+                    // Compute new full_name
+                    data[selectedRowIndex].full_name = `${firstName} ${middleName ? middleName + ' ' : ''}${lastName} ${suffix}`;
+
+                    // Update the table
+                    $('#table').bootstrapTable('load', data);
+
+                    // Close the modal
+                    $('#UpdatePatientPersonalRecords').modal('hide');
+                }
+            });
+
+            //Caculate Birthday automatically
+            function calculateAge(birthday) {
+                const birthDate = new Date(birthday);
+                const currentDate = new Date();
+                let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+                // Adjust for months and days
+                const m = currentDate.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && currentDate.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
