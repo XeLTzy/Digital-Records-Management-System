@@ -22,7 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
     //retrieve patient appointment below
     Route::get('/dashboard', [AppointmentController::class, 'getAppointments']);
     Route::post('/appointment/store', [AppointmentController::class, 'store'])->name('appointment.store');
-    Route::get('patient', [PatientController::class, 'index'])->name('patient.index');
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::post('/services/create', [ServiceController::class, 'createService'])->name('services.create');
     // Route to display the edit form for a specific service
