@@ -290,7 +290,7 @@
     .logo img {
         width: 30px;
     }
-
+branch
     .overlay h1 {
         font-size: 2rem;
         margin-top: 100px;
@@ -329,8 +329,8 @@
             <nav>
                 <ul>
                     <li><a href="{{url('/home')}}">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
                     <li><a href="{{url('/appointment')}}">Appointment</a></li>
+                    <li><a href="#bot">About Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -378,7 +378,7 @@
 
     <footer>
             <h1>About Us</h1>
-        <div class="footer-content">
+        <div class="footer-content" id="bot">
                 
             <div class="footer-section">
                 <h3>Address</h3>
@@ -405,9 +405,8 @@
             </div>
             <div class="footer-section">
                 <h3>Link</h3>
-                    <a href="homepage.html">Home</a><br>
-                    <a href="services.html">Services</a><br>
-                    <a href="appointment.html">Booking</a>
+                    <a href="{{url('/home')}}">Home</a><br>
+                    <a href="{{url('/appointment')}}">Booking</a>
             </div>
         </div>
         <div class="footer-bottom">
