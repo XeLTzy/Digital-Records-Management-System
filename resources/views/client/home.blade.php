@@ -401,13 +401,30 @@ branch
                 <input type="text" id="name" name="name" required><br>
 
                 <label for="email">Phone Number *:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required><br>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" maxlength="11" required><br>
 
                 <label for="date">Preferred Date:</label>
                 <input type="date" id="date" name="date" required min=""><br>
 
                 <label for="time">Preferred Time:</label>
-                <input type="time" id="time" name="time" required><br>
+                <select id="hours" name="hours" required>
+                    <option value="09:00">9:00 AM</option>
+                                    <option value="09:30">9:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="14:30">2:30 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="15:30">3:30 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="16:30">4:30 PM</option>
+                    </select><br>
 
                 <div class="info">
                     <p>Closed (Friday)</p>
