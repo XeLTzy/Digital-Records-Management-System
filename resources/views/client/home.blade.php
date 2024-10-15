@@ -135,6 +135,49 @@
         background-color: #007acc;
     }
 
+    .popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    }
+
+    .popup-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 25px;
+        width: 400px;
+        margin-bottom: 15px;
+    }
+
+    .popup-content button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00aaff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #0088cc;
+        }
+
+    .close-btn {
+        color: red;
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+    }
+
     .services {
         text-align: center;
         padding: 40px 20px;
@@ -261,6 +304,19 @@
         width: 100%;
         margin-bottom: 20px;
     }
+    
+    #Bookconfirm {
+            display: none !important;
+            min-height: 90svh;
+        }
+
+    #liveToast {
+            display: none;
+    }
+
+    .dtop {
+            min-height: 100svh;
+    }
 }
 
 /* For Small Mobile Phones */
@@ -329,17 +385,43 @@ branch
             <nav>
                 <ul>
                     <li><a href="{{url('/home')}}">Home</a></li>
-                    <li><a href="{{url('/appointment')}}">Appointment</a></li>
+                    <li><a href="" id="appointment-btn">Appointment</a></li>
                     <li><a href="#bot">About Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <div id="appointment-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>Book an Appointment</h2>
+            <form>
+                <label for="name">Full Name *:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Phone Number *:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required><br>
+
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date" required min=""><br>
+
+                <label for="time">Preferred Time:</label>
+                <input type="time" id="time" name="time" required><br>
+
+                <div class="info">
+                    <p>Closed (Friday)</p>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <section class="hero">
         <div class="overlay">
                 <h1>Prevent. Save. Restore.</h1>
-                <a href="{{url('/appointment')}}" class="button">Book now</a>
+                <a href="#" id="book-now" class="button">Book now</a>
         </div>
     </section>
 
@@ -403,16 +485,11 @@ branch
                 <img src="assets/images/Icons/icons8-phone-20.png" alt="phone-log">0917 839 1624<br>
                 <img src="assets/images/Icons/icons8-facebook-20.png" alt="Facebook-logo"><a href="https://web.facebook.com/DentistaRoyaleDW">Dentista Royale D.W </a></p>
             </div>
-            <div class="footer-section">
-                <h3>Link</h3>
-                    <a href="{{url('/home')}}">Home</a><br>
-                    <a href="{{url('/appointment')}}">Booking</a>
-            </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 by Dentista Royale Dental Works. Website</p>
+            <p>&copy; Website made for Dentista Royale D.W. 2024</p>
         </div>
-    </footer>
+    </footer> 
 
     <script>
         document.getElementById("viewmorebtn").addEventListener("click", function() {
@@ -425,9 +502,72 @@ branch
         } else {
             moreContent.style.display = "none";
             btn.textContent = "View More";
-        }
-    });
+        }});
+        </script>
+    <script>
+        // Get elements
+            // Get elements
+            const appointmentBtn = document.getElementById('appointment-btn');
+            const bookNowBtn = document.getElementById('book-now');
+            const popup = document.getElementById('appointment-popup');
+            const closeBtn = document.querySelector('.close-btn');
+
+            function openPopup(event) {
+                event.preventDefault();
+                popup.style.display = 'flex';
+            }
+
+            appointmentBtn.addEventListener('click', openPopup);
+            bookNowBtn.addEventListener('click', openPopup);
+
+            closeBtn.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target == popup) {
+                    popup.style.display = 'none';
+                }
+            });
 
         </script>
+
+        <script>
+
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];  // Get today's date in YYYY-MM-DD format
+            dateInput.setAttribute('min', today);
+        </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#appointmentForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Capture form data
+                let formData = $(this).serialize();
+
+                // Send AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: '/appointment/store', // Replace with your actual endpoint URL
+                    data: formData,
+                    success: function(response) {
+                        // Show success toast notification
+                        $('#liveToast').text(response.message).fadeIn().delay(3000).fadeOut();
+                        // Optionally, you can reset the form
+                        $('#appointmentForm')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error
+                        $('#liveToast').text('Error submitting the appointment.').fadeIn().delay(3000).fadeOut();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="{{ asset('frameworks/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
